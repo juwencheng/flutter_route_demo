@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WithoutParameterPage extends StatefulWidget {
+  static String routeName = "/without_parameter_page";
   @override
   _WithoutParameterPageState createState() => _WithoutParameterPageState();
 }

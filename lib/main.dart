@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_route_demo/without_parameter_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,6 +9,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter 路由',
+      routes: {
+        WithoutParameterPage.routeName: (context) => WithoutParameterPage(),
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -53,7 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               FlatButton(
                 child: Text("无参页面"),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => WithoutParameterPage(),
+                    ),
+                  );
+                },
               ),
               RaisedButton(
                 color: Colors.blue,
@@ -71,7 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               FlatButton(
                 child: Text("无参页面"),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    WithoutParameterPage.routeName,
+                  );
+                },
               ),
               RaisedButton(
                 child: Text(
