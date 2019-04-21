@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class WithParameterPage extends StatefulWidget {
   final Map<String, dynamic> parameters;
-
+  static const String routeName = "/with_parameter_page";
   const WithParameterPage({Key key, this.parameters}) : super(key: key);
   @override
   _WithParameterPageState createState() => _WithParameterPageState();

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_route_demo/not_found_page.dart';
+import 'package:flutter_route_demo/with_parameter_page.dart';
 import 'package:flutter_route_demo/without_parameter_page.dart';
 
 void main() => runApp(MyApp());
@@ -9,6 +11,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter 路由',
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case WithParameterPage.routeName:
+            return MaterialPageRoute(
+                builder: (context) =>
+                    WithParameterPage(parameters: settings.arguments));
+          default:
+            break;
+        }
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => NotFoundPage(settings: settings),
+        );
+      },
       routes: {
         WithoutParameterPage.routeName: (context) => WithoutParameterPage(),
       },
@@ -71,7 +88,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   "含参页面",
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => WithParameterPage(
+                            parameters: {"hello": "world"},
+                          ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -93,7 +118,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(color: Colors.white),
                 ),
                 color: Colors.blue,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/abc");
+                  return;
+                  Navigator.of(context).pushNamed(
+                    WithParameterPage.routeName,
+                    arguments: {"hello": "world"},
+                  );
+                },
               ),
             ],
           ),
