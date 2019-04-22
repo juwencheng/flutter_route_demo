@@ -119,8 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 color: Colors.blue,
                 onPressed: () {
-                  Navigator.of(context).pushNamed("/abc");
-                  return;
                   Navigator.of(context).pushNamed(
                     WithParameterPage.routeName,
                     arguments: {"hello": "world"},
